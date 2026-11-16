@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101522">
+    <title>Qubit / Infrastructure observatory</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Qubit home"><span class="brand-icon">Q</span> qubit<span class="brand-dot">.</span></a>
+      <span class="workspace-label">WORKSPACE</span>
+      <div class="workspace"><span class="workspace-avatar">QL</span><div>Quantum Lab<span>Infrastructure observatory</span></div></div>
+      <nav aria-label="Main navigation"><a href="#overview" class="selected"><span aria-hidden="true">▦</span> Overview <span class="nav-dot"></span></a><a href="#telemetry"><span aria-hidden="true">⌁</span> Device telemetry</a><a href="#health"><span aria-hidden="true">◎</span> System health</a></nav>
+      <div class="sidebar-footer"><span class="environment-dot"></span> Simulation environment<span class="sidebar-note">No production devices connected</span></div>
+    </aside>
+    <main id="overview">
+      <header class="topbar"><div>Workspace <span>/</span> <strong>Overview</strong></div><div class="demo-badge"><span></span> SYNTHETIC DATA</div></header>
+      <section class="page-heading"><div><div class="eyebrow">INFRASTRUCTURE OBSERVATORY</div><h1>A clearer view of your quantum stack.</h1><p>Device performance, calibration health, and workload activity. All in one place.</p></div><button id="refresh" type="button"><span aria-hidden="true">↻</span> Refresh data</button></section>
+      <div class="connection-bar" role="status" aria-live="polite"><span id="connection-dot" class="status-dot loading"></span><span id="connection">Connecting to telemetry…</span><span id="updated">Waiting for first sample</span></div>
+      <div id="error" class="error-banner" role="alert" hidden></div>
+      <section class="metric-grid" aria-label="Key performance indicators">
+        <article class="metric"><div class="metric-label">Device status <span aria-hidden="true">◎</span></div><div id="deviceStatus" class="metric-value status-value">—</div><div class="metric-description">Reported by the simulator</div></article>
+        <article class="metric"><div class="metric-label">Gate fidelity <span class="purple" aria-hidden="true">◇</span></div><div class="metric-value"><span id="fidelity">—</span><small>%</small></div><div class="metric-description"><span class="legend-dot purple-bg"></span> Quantum operation accuracy</div></article>
+        <article class="metric"><div class="metric-label">Error rate <span class="teal" aria-hidden="true">⌁</span></div><div class="metric-value"><span id="errorRate">—</span><small>%</small></div><div class="metric-description"><span class="legend-dot teal-bg"></span> Lower is better</div></article>
+        <article class="metric"><div class="metric-label">Calibration drift <span class="amber" aria-hidden="true">⤴</span></div><div class="metric-value"><span id="calibrationDrift">—</span><small>%</small></div><div class="metric-description">Deviation from calibrated baseline</div></article>
+      </section>
+      <section id="telemetry" class="panel chart-panel">
+        <div class="panel-heading"><div><div class="eyebrow">DEVICE TELEMETRY</div><h2>Performance over time</h2><p id="chart-description">Recent fidelity and error-rate samples from the synthetic device.</p></div><span class="chip">LATEST SAMPLES</span></div>
+        <div class="chart-toolbar"><div class="chart-legend"><span><i class="purple-bg"></i> Gate fidelity</span><span><i class="teal-bg"></i> Error rate</span></div><span class="axis-note">Independent scales · %</span></div>
+        <div id="chart-empty" class="chart-empty">Waiting for device telemetry…</div>
+        <svg id="chart" viewBox="0 0 960 300" role="img" aria-labelledby="chart-title chart-desc" hidden><title id="chart-title">Quantum device performance</title><desc id="chart-desc">Fidelity and error-rate time series, using separate labelled percentage axes.</desc><g id="chart-content"></g></svg>
+        <div class="chart-footer"><span><span class="status-dot"></span> Auto-refresh every 5 seconds</span><span id="sample-count">0 samples</span></div>
+      </section>
+      <section id="health" class="bottom-grid">
+        <article class="panel workload"><div class="panel-heading"><div><div class="eyebrow">WORKLOAD</div><h2>Jobs in flight</h2></div><span class="small-icon" aria-hidden="true">▥</span></div><div class="jobs-value"><span id="jobsRunning">—</span><span>running jobs</span></div><p>Active workloads reported by the demo scheduler.</p></article>
+        <article class="panel lab-note"><div class="note-icon" aria-hidden="true">✧</div><div><div class="eyebrow">BUILT FOR EXPLORATION</div><h2>Real visibility. Simulated hardware.</h2><p>This dashboard uses generated metrics to demonstrate quantum infrastructure monitoring. No real quantum hardware, experiments, or customer data are connected.</p><span class="endpoint">SOURCE <code>localhost:3001/api/metrics</code></span></div></article>
+      </section>
+      <footer class="page-footer"><span>QUBIT / QUANTUM INFRASTRUCTURE</span><span>Example observability dashboard · Demo only</span></footer>
+    </main>
+  </body>
+</html>
